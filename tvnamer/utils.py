@@ -550,6 +550,7 @@ class EpisodeInfo(object):
 
         # Default to 1, series without concept of seasons have all episodes in season 1
         seasonnumber = int(self.extra.get('seasonnumber') or 1)
+	self.extra['seasonnumber'] = seasonnumber
 
         epnames = []
         for cepno in self.episodenumbers:
@@ -624,6 +625,8 @@ class EpisodeInfo(object):
 
         epdata = self.getepdata()
         newName = self.getFormatString() % epdata
+
+	p(str(epdata['seasonnumber']))
 
         if len(Config['output_filename_replacements']) > 0:
             p("Before custom output replacements: %s" % newName)
